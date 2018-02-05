@@ -10,7 +10,7 @@ namespace Common
     public interface IDataManagment
     {
         [OperationContract]
-        void Read();
+        List<string> Read();
         [OperationContract]
         void Write();
 
