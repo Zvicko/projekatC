@@ -4,3 +4,8 @@ C:\Users\CyborgZvicko\Documents\GitHub\projekatC\ProjekatC\Common\obj\Debug\Comm
 C:\Users\CyborgZvicko\Documents\GitHub\projekatC\ProjekatC\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 C:\Users\CyborgZvicko\Documents\GitHub\projekatC\ProjekatC\Common\obj\Debug\Common.dll
 C:\Users\CyborgZvicko\Documents\GitHub\projekatC\ProjekatC\Common\obj\Debug\Common.pdb
+C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Common\bin\Debug\Common.dll
+C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Common\bin\Debug\Common.pdb
+C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Common\obj\Debug\Common.dll
+C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Common\obj\Debug\Common.pdb

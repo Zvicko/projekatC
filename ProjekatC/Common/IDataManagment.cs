@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+
 namespace Common
 {
     [ServiceContract]
     public interface IDataManagment
     {
         [OperationContract]
-        List<string> Read();
+        void Write(string id, string name);
+
         [OperationContract]
-        void Write();
-
-
+        List<Element> Read();
     }
 }
