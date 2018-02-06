@@ -15,3 +15,11 @@ C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Client\bin\Debug\Common.pdb
 C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Client\obj\Debug\Client.exe
 C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Client\obj\Debug\Client.pdb
+E:\Zadaci\projekatC\ProjekatC\Client\bin\Debug\Client.exe.config
+E:\Zadaci\projekatC\ProjekatC\Client\bin\Debug\Client.exe
+E:\Zadaci\projekatC\ProjekatC\Client\bin\Debug\Client.pdb
+E:\Zadaci\projekatC\ProjekatC\Client\bin\Debug\Common.dll
+E:\Zadaci\projekatC\ProjekatC\Client\bin\Debug\Common.pdb
+E:\Zadaci\projekatC\ProjekatC\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+E:\Zadaci\projekatC\ProjekatC\Client\obj\Debug\Client.exe
+E:\Zadaci\projekatC\ProjekatC\Client\obj\Debug\Client.pdb

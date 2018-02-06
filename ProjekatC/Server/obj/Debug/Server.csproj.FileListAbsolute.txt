@@ -15,3 +15,11 @@ C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Server\bin\Debug\Server.pdb
 C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Server\bin\Debug\Common.dll
 C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Server\bin\Debug\Common.pdb
 C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+E:\Zadaci\projekatC\ProjekatC\Server\bin\Debug\Server.exe.config
+E:\Zadaci\projekatC\ProjekatC\Server\obj\Debug\Server.exe
+E:\Zadaci\projekatC\ProjekatC\Server\obj\Debug\Server.pdb
+E:\Zadaci\projekatC\ProjekatC\Server\bin\Debug\Server.exe
+E:\Zadaci\projekatC\ProjekatC\Server\bin\Debug\Server.pdb
+E:\Zadaci\projekatC\ProjekatC\Server\bin\Debug\Common.dll
+E:\Zadaci\projekatC\ProjekatC\Server\bin\Debug\Common.pdb
+E:\Zadaci\projekatC\ProjekatC\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache

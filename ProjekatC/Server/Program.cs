@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using Common;
+
 namespace Server
 {
     class Program
@@ -13,12 +14,15 @@ namespace Server
         {
             NetTcpBinding binding = new NetTcpBinding();
             string address = "net.tcp://localhost:5500/DataManagment";
+
             ServiceHost host = new ServiceHost(typeof(DataManagment));
             host.AddServiceEndpoint(typeof(IDataManagment), binding, address);
+
             try
             {
                 host.Open();
-                Console.WriteLine("Server has started...");
+
+                Console.WriteLine("Server has been started.\n");
                 Console.WriteLine("Press any key to stop the server...");
                 Console.ReadLine();
             }
@@ -30,8 +34,6 @@ namespace Server
             {
                 host.Close();
             }
-           
-
         }
     }
 }

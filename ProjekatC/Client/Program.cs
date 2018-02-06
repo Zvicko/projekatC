@@ -14,11 +14,10 @@ namespace Client
         {
             NetTcpBinding binding = new NetTcpBinding();
             string address = "net.tcp://localhost:5500/DataManagment";
-            List<string> list = new List<string>();
 
-            int option = 0;                 // Promenljiva option je promenljiva u kojoj se skladisti izabrana opcija.
-            string opt = "";                // Promenljiva opt je promenljiva u kojoj se skladisti string reprezentacija odabrane opcije.
-            bool isOptValid = false;        // Promenljiva isOptValid je promenljiva u kojoj se belezi da je izabrana opcija validna.
+            int option = 0;                 // Promenljiva option u kojoj se skladisti izabrana opcija.
+            string opt = "";                // Promenljiva opt u kojoj se skladisti string reprezentacija odabrane opcije.
+            bool isOptValid = false;        // Promenljiva isOptValid u kojoj se belezi da je izabrana opcija validna.
 
             Console.WriteLine("");
 
@@ -83,7 +82,7 @@ namespace Client
 
                                 } while (id.Length < 4);
 
-                                do                                      // Ime mora da ima najmanje 6 karaktera.
+                                do                                      // Ime mora da ima najmanje 3 karaktera.
                                 {
                                     Console.Write("\nEnter name: ");    // Unosenje i skladistenje imena elementa.
                                     name = Console.ReadLine();
@@ -118,12 +117,21 @@ namespace Client
 
                                 elements = clp.Read();              // Poziva se metoda za citanje elemenata.
 
-                                foreach (Element e in elements)     // Ispis pronadjenih elemenata.
+                                if (elements.Count == 0)            // Ukoliko .xml datoteka ne postoji korisnik se obavestava o tome.
                                 {
-                                    Console.WriteLine("------------------------------");
-                                    Console.WriteLine("ID: {0}", e.ID);
-                                    Console.WriteLine("Name: {0}", e.Name);
-                                    Console.WriteLine("------------------------------\n");
+                                    Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+                                    Console.WriteLine("\t\t\t The file does not exist. It will be created when an element is added.");
+                                    Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------\n");
+                                }
+                                else
+                                {
+                                    foreach (Element e in elements)     // Ispis pronadjenih elemenata.
+                                    {
+                                        Console.WriteLine("------------------------------");
+                                        Console.WriteLine("ID: {0}", e.ID);
+                                        Console.WriteLine("Name: {0}", e.Name);
+                                        Console.WriteLine("------------------------------\n");
+                                    }
                                 }
 
                                 Console.WriteLine("=======================================================================================================================\n\n");
@@ -141,7 +149,7 @@ namespace Client
                 }   
             }
 
-            Console.WriteLine("Press any key to exit...");
+            Console.WriteLine("\nPress any key to exit...");
             Console.ReadLine();
         }
     }

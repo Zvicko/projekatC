@@ -9,3 +9,8 @@ C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Common\bin\Debug\Common.pdb
 C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Common\obj\Debug\Common.dll
 C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Common\obj\Debug\Common.pdb
+E:\Zadaci\projekatC\ProjekatC\Common\bin\Debug\Common.dll
+E:\Zadaci\projekatC\ProjekatC\Common\bin\Debug\Common.pdb
+E:\Zadaci\projekatC\ProjekatC\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+E:\Zadaci\projekatC\ProjekatC\Common\obj\Debug\Common.dll
+E:\Zadaci\projekatC\ProjekatC\Common\obj\Debug\Common.pdb

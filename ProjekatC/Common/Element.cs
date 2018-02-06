@@ -29,12 +29,14 @@ namespace Common
         public string ID
         {
             get { return id; }
+            set { id = value; }
         }
 
         [DataMember]
         public string Name
         {
             get { return name; }
+            set { name = value; }
         }
     }
 }

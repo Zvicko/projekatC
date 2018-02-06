@@ -16,16 +16,18 @@ namespace Client
             factory = this.CreateChannel();
         }
 
-        public List<Element> Read()
-        {
-            List<Element> elements = new List<Element>(0);
-
-            return elements;
-        }
-
         public void Write(string id, string name)
         {
             factory.Write(id, name);
+        }
+
+        public List<Element> Read()
+        {
+            List<Element> elements = new List<Element>();
+
+            elements = factory.Read();
+
+            return elements;
         }
     }
 }

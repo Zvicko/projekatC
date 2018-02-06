@@ -96,12 +96,6 @@ namespace Server
 
                 xmlReader.Close();                  // Zatvaranje XmlReader-a.
             }
-            else                                    // Ukoliko .xml datoteka ne postoji korisnik se obavestava o tome.
-            {
-                Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
-                Console.WriteLine("\t\t\t The file does not exist. It will be created when an element is added.");
-                Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------\n");
-            }
 
             return elements;                        // Vraca se lista pronadjenih elemenata.                        
         }
