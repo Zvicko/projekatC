@@ -15,7 +15,7 @@ namespace Server
         // Write dodaje jedan novi element u .xml datoteku na osnovu prosedjenog ID-a i imena elementa.
         public void Write(string id, string name)
         {
-            if (File.Exists("Informations.xml") == true)     // Provera postojanja datoteke u kojoj se dodaje specificiran element.
+            if (File.Exists("Informations.xml"))     // Provera postojanja datoteke u kojoj se dodaje specificiran element.
             {
                 XDocument xDocument = XDocument.Load("Informations.xml");           // Ukoliko datoteka postoji, ucitaju se podaci iz nje.
                 XElement root = xDocument.Element("Elements");                      // Pribavlja se cvor koji predstavlja koren datoteke.
@@ -50,15 +50,15 @@ namespace Server
         }
 
         // Metoda koja cita .xml datoteku i vraca listu pronadjenih elemenata.
-        public List<Element> Read()
+        public Dictionary<byte[],byte[]> Read()
         {
             string id = "";                         // Promenljiva id cuva id pronadjenog elementa.
             string name = "";                       // Promenljiva name cuva ime pronadjenog elementa.
             bool element_added = true;              // Promenljiva element_added javlja kada je element dodat.
+            byte[] b = new byte[1];
+            Dictionary<byte[],byte[]> elements = new Dictionary<byte[], byte[]>();
 
-            List<Element> elements = new List<Element>();
-
-            if (File.Exists("Informations.xml") == true)
+            if (File.Exists("Informations.xml"))
             {
                 XmlReader xmlReader = XmlReader.Create("Informations.xml");
 
@@ -66,9 +66,16 @@ namespace Server
                 {
                     if (id != "" && name != "")                     // Kada su promenljive id i name neprazni stringovi novi element je pronadjen.
                     {
-                        Element element = new Element(id, name);    // Pravljenje novog elementa na osnovu procitanih vrednosti ID-a i imena.
+                        string key = "burek";
+                        byte[] keyB = Encoding.ASCII.GetBytes(key);
+                        byte[] nameB = Encoding.ASCII.GetBytes(name);
+                        byte[] idB = Encoding.ASCII.GetBytes(id);
+                        byte[] encrpytedName =  RC4.Encrypt(keyB, nameB);
+                        byte[] encrpytedId = RC4.Encrypt(keyB, idB);
+                        //return encrpyted;
+                        //Element element = new Element(id, name);    // Pravljenje novog elementa na osnovu procitanih vrednosti ID-a i imena.
 
-                        elements.Add(element);                      // Dodavanje elementa u listu elemenata.
+                        elements.Add(encrpytedId,encrpytedName);                      // Dodavanje elementa u listu elemenata.
 
                         if (element_added == true)                  // Resetovanje vrednosti promenljivih id i name nakon sto je element pronadjen.
                         {

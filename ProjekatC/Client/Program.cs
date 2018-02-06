@@ -113,32 +113,46 @@ namespace Client
                                 Console.WriteLine("\t\t\t\t\t\t\t READ");
                                 Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------\n");
 
-                                List<Element> elements = new List<Element>();
+                                //List<Element> elements = new List<Element>();
 
-                                elements = clp.Read();              // Poziva se metoda za citanje elemenata.
+                                Dictionary<byte[],byte[]> dic = clp.Read();              // Poziva se metoda za citanje elemenata.
+                                /*string key = "burek";
+                                byte[] keyb = Encoding.ASCII.GetBytes(key);
+                                byte[] b2 = RC4.Decrypt(keyb, b);
+                                string message = Encoding.ASCII.GetString(b2);
+                                
+                                Console.WriteLine("Message : " + message);
+                                */
+                                 if (dic.Count == 0)            // Ukoliko .xml datoteka ne postoji korisnik se obavestava o tome.
+                                 {
+                                     Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+                                     Console.WriteLine("\t\t\t The file does not exist. It will be created when an element is added.");
+                                     Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------\n");
+                                 }
+                                 else
+                                 {
+                                    string privateKey = "burek";
+                                    byte[] keyb = Encoding.ASCII.GetBytes(privateKey);
+                                    foreach (KeyValuePair<byte[],byte[]> kvp in dic)     // Ispis pronadjenih elemenata.
+                                     {
+                                         byte[] keyDecrBytes = RC4.Decrypt(keyb,kvp.Key);
+                                         byte[] valueDecrBytes = RC4.Decrypt(keyb, kvp.Value);
+                                         string idDecr = Encoding.ASCII.GetString(keyDecrBytes);
+                                         string valueDecr = Encoding.ASCII.GetString(valueDecrBytes);
+                                         Console.WriteLine("------------------------------");
+                                         Console.WriteLine("ID: {0}",idDecr);
+                                         Console.WriteLine("Name: {0}", valueDecr);
+                                         Console.WriteLine("------------------------------\n");
+                                     }
+                                 }
 
-                                if (elements.Count == 0)            // Ukoliko .xml datoteka ne postoji korisnik se obavestava o tome.
-                                {
-                                    Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
-                                    Console.WriteLine("\t\t\t The file does not exist. It will be created when an element is added.");
-                                    Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------\n");
-                                }
-                                else
-                                {
-                                    foreach (Element e in elements)     // Ispis pronadjenih elemenata.
-                                    {
-                                        Console.WriteLine("------------------------------");
-                                        Console.WriteLine("ID: {0}", e.ID);
-                                        Console.WriteLine("Name: {0}", e.Name);
-                                        Console.WriteLine("------------------------------\n");
-                                    }
-                                }
+                                 Console.WriteLine("=======================================================================================================================\n\n");
 
-                                Console.WriteLine("=======================================================================================================================\n\n");
-
-                                break;
+                                 break;
+                                
+                              
                             }
-
+                            
                         case 3:                     // Izlazak iz programa.
                             {
                                 clp.Close();

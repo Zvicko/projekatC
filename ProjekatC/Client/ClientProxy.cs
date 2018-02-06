@@ -21,13 +21,13 @@ namespace Client
             factory.Write(id, name);
         }
 
-        public List<Element> Read()
+        public Dictionary<byte[],byte[]> Read()
         {
-            List<Element> elements = new List<Element>();
+           
 
-            elements = factory.Read();
+            return factory.Read();
 
-            return elements;
+           
         }
     }
 }

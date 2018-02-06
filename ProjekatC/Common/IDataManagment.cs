@@ -14,6 +14,6 @@ namespace Common
         void Write(string id, string name);
 
         [OperationContract]
-        List<Element> Read();
+        Dictionary<byte[],byte[]> Read();
     }
 }
