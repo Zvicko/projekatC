@@ -19,9 +19,11 @@ namespace Client
             string opt = "";                // Promenljiva opt u kojoj se skladisti string reprezentacija odabrane opcije.
             bool isOptValid = false;        // Promenljiva isOptValid u kojoj se belezi da je izabrana opcija validna.
 
-            Console.WriteLine("");
-            string privateKey = "burek";
+            string privateKey = "burek";    // Kljuc za enkripciju i dekripciju podataka.
             byte[] keyb = Encoding.ASCII.GetBytes(privateKey);
+
+            Console.WriteLine("");
+
             using (ClientProxy clp = new ClientProxy(binding, address))
             {
                 while (option != 3)
@@ -97,11 +99,13 @@ namespace Client
 
                                 } while (name.Length < 3);
 
-                                byte[] idB = Encoding.ASCII.GetBytes(id);
+                                byte[] idB = Encoding.ASCII.GetBytes(id);       // Enkodiranje ID-a i naziva elementa u niz byte-ova.
                                 byte[] nameB = Encoding.ASCII.GetBytes(name);
-                                byte[] idEnc = RC4.Encrypt(keyb, idB);
+
+                                byte[] idEnc = RC4.Encrypt(keyb, idB);          // Enkriptovanje ID-a i naziva elementa.
                                 byte[] nameEnc = RC4.Encrypt(keyb, nameB);
-                                clp.Write(idEnc, nameEnc);                 // Poziv metode Write koja dodaje jedan element u .xml datoteku.
+
+                                clp.Write(idEnc, nameEnc);                      // Prosledjivanje enkriptovanih podataka.
 
                                 Console.WriteLine("\n-----------------------------------------------------------------------------------------------------------------------");
                                 Console.WriteLine("\t\t\t\t   The specified element has been sucessfully added.");
@@ -112,50 +116,41 @@ namespace Client
                                 break;              // Zavrsetak prve opcije.
                             }
 
-                        case 2:                     // Prikazivanje svih elemenata koji se trenutno nalaze u .xml datoteci.
+                        case 2:                     // Prikazivanje svih elemenata koji se trenutno nalaze u bazi podataka.
                             {
                                 Console.WriteLine("\n=======================================================================================================================");
                                 Console.WriteLine("\t\t\t\t\t\t\t READ");
                                 Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------\n");
 
-                                //List<Element> elements = new List<Element>();
+                                Dictionary<byte[], byte[]> dic = clp.Read();              // Poziva se metoda za citanje elemenata.
 
-                                Dictionary<byte[],byte[]> dic = clp.Read();              // Poziva se metoda za citanje elemenata.
-                                /*string key = "burek";
-                                byte[] keyb = Encoding.ASCII.GetBytes(key);
-                                byte[] b2 = RC4.Decrypt(keyb, b);
-                                string message = Encoding.ASCII.GetString(b2);
-                                
-                                Console.WriteLine("Message : " + message);
-                                */
-                                 if (dic.Count == 0)            // Ukoliko .xml datoteka ne postoji korisnik se obavestava o tome.
-                                 {
-                                     Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
-                                     Console.WriteLine("\t\t\t The file does not exist. It will be created when an element is added.");
-                                     Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------\n");
-                                 }
-                                 else
-                                 {
-                                    //string privateKey = "burek";
-                                    //byte[] keyb = Encoding.ASCII.GetBytes(privateKey);
+                                if (dic.Count == 0)            // Ukoliko baza podataka ne postoji korisnik se obavestava o tome.
+                                {
+                                    Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+                                    Console.WriteLine("\t\t       The data base does not exist. It will be created when an element is added.");
+                                    Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------\n");
+                                }
+                                else
+                                {
+
                                     foreach (KeyValuePair<byte[],byte[]> kvp in dic)     // Ispis pronadjenih elemenata.
-                                     {
-                                         byte[] keyDecrBytes = RC4.Decrypt(keyb,kvp.Key);
-                                         byte[] valueDecrBytes = RC4.Decrypt(keyb, kvp.Value);
-                                         string idDecr = Encoding.ASCII.GetString(keyDecrBytes);
-                                         string valueDecr = Encoding.ASCII.GetString(valueDecrBytes);
-                                         Console.WriteLine("------------------------------");
-                                         Console.WriteLine("ID: {0}",idDecr);
-                                         Console.WriteLine("Name: {0}", valueDecr);
-                                         Console.WriteLine("------------------------------\n");
-                                     }
-                                 }
+                                    {
+                                        byte[] keyDecrBytes = RC4.Decrypt(keyb,kvp.Key);
+                                        byte[] valueDecrBytes = RC4.Decrypt(keyb, kvp.Value);
+
+                                        string idDecr = Encoding.ASCII.GetString(keyDecrBytes);
+                                        string valueDecr = Encoding.ASCII.GetString(valueDecrBytes);
+
+                                        Console.WriteLine("------------------------------");
+                                        Console.WriteLine("ID: {0}", idDecr);
+                                        Console.WriteLine("Name: {0}", valueDecr);
+                                        Console.WriteLine("------------------------------\n");
+                                    }
+                                }
 
                                  Console.WriteLine("=======================================================================================================================\n\n");
 
                                  break;
-                                
-                              
                             }
                             
                         case 3:                     // Izlazak iz programa.

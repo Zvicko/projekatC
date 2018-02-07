@@ -18,17 +18,12 @@ namespace Client
 
         public void Write(byte[] id, byte[] name)
         {
-           
             factory.Write(id, name);
         }
 
-        public Dictionary<byte[],byte[]> Read()
+        public Dictionary<byte[], byte[]> Read()
         {
-           
-
-            return factory.Read();
-
-           
+            return factory.Read();   
         }
     }
 }

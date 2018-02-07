@@ -12,18 +12,24 @@ namespace Server
 {
     public class DataManagment : IDataManagment
     {
-        // Write dodaje jedan novi element u .xml datoteku na osnovu prosedjenog ID-a i imena elementa.
+        /// <summary>
+        /// Dodaje jedan novi element u .xml datoteku (bazu podataka).
+        /// </summary>
+        /// <param name="id"> Jedinstveni identifikator novog elementa. </param>
+        /// <param name="name"> Naziv novog elementa. </param>
         public void Write(byte[] id, byte[] name)
-        {
-            string key = "burek";
+        {  
+            string key = "burek";                           // Kljuc za enkripciju i dekripciju podataka.
+
             byte[] keyB = Encoding.ASCII.GetBytes(key);
-            byte[] idDec = RC4.Decrypt(keyB, id);
+
+            byte[] idDec = RC4.Decrypt(keyB, id);           // Dekodiranje vrednosti ID-a i naziva elementa.
             byte[] nameDec = RC4.Decrypt(keyB, name);
+
             string idString = Encoding.ASCII.GetString(idDec);
             string nameString = Encoding.ASCII.GetString(nameDec);
 
-
-            if (File.Exists("Informations.xml"))     // Provera postojanja datoteke u kojoj se dodaje specificiran element.
+            if (File.Exists("Informations.xml"))            // Provera postojanja datoteke u kojoj se dodaje specificiran element.
             {
                 XDocument xDocument = XDocument.Load("Informations.xml");           // Ukoliko datoteka postoji, ucitaju se podaci iz nje.
                 XElement root = xDocument.Element("Elements");                      // Pribavlja se cvor koji predstavlja koren datoteke.
@@ -57,12 +63,16 @@ namespace Server
             }
         }
 
-        // Metoda koja cita .xml datoteku i vraca listu pronadjenih elemenata.
+        /// <summary>
+        /// Cita bazu podataka.
+        /// </summary>
+        /// <returns> Mapirani podaci u recniku. </returns>
         public Dictionary<byte[],byte[]> Read()
         {
             string id = "";                         // Promenljiva id cuva id pronadjenog elementa.
             string name = "";                       // Promenljiva name cuva ime pronadjenog elementa.
             bool element_added = true;              // Promenljiva element_added javlja kada je element dodat.
+
             byte[] b = new byte[1];
             Dictionary<byte[],byte[]> elements = new Dictionary<byte[], byte[]>();
 
@@ -72,7 +82,7 @@ namespace Server
 
                 while (xmlReader.Read())
                 {
-                    if (id != "" && name != "")                     // Kada su promenljive id i name neprazni stringovi novi element je pronadjen.
+                    if (id != "" && name != "")                             // Kada su promenljive id i name neprazni stringovi novi element je pronadjen.
                     {
                         string key = "burek";
                         byte[] keyB = Encoding.ASCII.GetBytes(key);
@@ -80,12 +90,10 @@ namespace Server
                         byte[] idB = Encoding.ASCII.GetBytes(id);
                         byte[] encrpytedName =  RC4.Encrypt(keyB, nameB);
                         byte[] encrpytedId = RC4.Encrypt(keyB, idB);
-                        //return encrpyted;
-                        //Element element = new Element(id, name);    // Pravljenje novog elementa na osnovu procitanih vrednosti ID-a i imena.
 
-                        elements.Add(encrpytedId,encrpytedName);                      // Dodavanje elementa u listu elemenata.
+                        elements.Add(encrpytedId, encrpytedName);           // Dodavanje elementa u listu elemenata.
 
-                        if (element_added == true)                  // Resetovanje vrednosti promenljivih id i name nakon sto je element pronadjen.
+                        if (element_added == true)                          // Resetovanje vrednosti promenljivih id i name nakon sto je element pronadjen.
                         {
                             id = "";
                             name = "";
@@ -112,7 +120,7 @@ namespace Server
                 xmlReader.Close();                  // Zatvaranje XmlReader-a.
             }
 
-            return elements;                        // Vraca se lista pronadjenih elemenata.                        
+            return elements;                        
         }
     }
 }
