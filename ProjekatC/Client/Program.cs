@@ -20,7 +20,8 @@ namespace Client
             bool isOptValid = false;        // Promenljiva isOptValid u kojoj se belezi da je izabrana opcija validna.
 
             Console.WriteLine("");
-
+            string privateKey = "burek";
+            byte[] keyb = Encoding.ASCII.GetBytes(privateKey);
             using (ClientProxy clp = new ClientProxy(binding, address))
             {
                 while (option != 3)
@@ -96,7 +97,11 @@ namespace Client
 
                                 } while (name.Length < 3);
 
-                                clp.Write(id, name);                 // Poziv metode Write koja dodaje jedan element u .xml datoteku.
+                                byte[] idB = Encoding.ASCII.GetBytes(id);
+                                byte[] nameB = Encoding.ASCII.GetBytes(name);
+                                byte[] idEnc = RC4.Encrypt(keyb, idB);
+                                byte[] nameEnc = RC4.Encrypt(keyb, nameB);
+                                clp.Write(idEnc, nameEnc);                 // Poziv metode Write koja dodaje jedan element u .xml datoteku.
 
                                 Console.WriteLine("\n-----------------------------------------------------------------------------------------------------------------------");
                                 Console.WriteLine("\t\t\t\t   The specified element has been sucessfully added.");
@@ -131,8 +136,8 @@ namespace Client
                                  }
                                  else
                                  {
-                                    string privateKey = "burek";
-                                    byte[] keyb = Encoding.ASCII.GetBytes(privateKey);
+                                    //string privateKey = "burek";
+                                    //byte[] keyb = Encoding.ASCII.GetBytes(privateKey);
                                     foreach (KeyValuePair<byte[],byte[]> kvp in dic)     // Ispis pronadjenih elemenata.
                                      {
                                          byte[] keyDecrBytes = RC4.Decrypt(keyb,kvp.Key);

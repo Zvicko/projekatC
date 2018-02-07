@@ -13,8 +13,16 @@ namespace Server
     public class DataManagment : IDataManagment
     {
         // Write dodaje jedan novi element u .xml datoteku na osnovu prosedjenog ID-a i imena elementa.
-        public void Write(string id, string name)
+        public void Write(byte[] id, byte[] name)
         {
+            string key = "burek";
+            byte[] keyB = Encoding.ASCII.GetBytes(key);
+            byte[] idDec = RC4.Decrypt(keyB, id);
+            byte[] nameDec = RC4.Decrypt(keyB, name);
+            string idString = Encoding.ASCII.GetString(idDec);
+            string nameString = Encoding.ASCII.GetString(nameDec);
+
+
             if (File.Exists("Informations.xml"))     // Provera postojanja datoteke u kojoj se dodaje specificiran element.
             {
                 XDocument xDocument = XDocument.Load("Informations.xml");           // Ukoliko datoteka postoji, ucitaju se podaci iz nje.
@@ -22,7 +30,7 @@ namespace Server
                 IEnumerable<XElement> rows = root.Descendants("Element");           // Lista cvorova potomaka korenog elementa.
                 XElement lastRow = rows.Last();                                     // Odredjivanje poslednjeg elementa iz liste.
 
-                lastRow.AddAfterSelf(new XElement("Element", new XElement("ID", id), new XElement("Name", name)));  // Po odredjinanju poslednjeg elementa, nakon tog elementa doda se element na osnovu specificiranih vrednosti.
+                lastRow.AddAfterSelf(new XElement("Element", new XElement("ID", idString), new XElement("Name", nameString)));  // Po odredjinanju poslednjeg elementa, nakon tog elementa doda se element na osnovu specificiranih vrednosti.
 
                 xDocument.Save("Informations.xml");                                 // Nakon azuriranja .xml datoteke, promene se sacuvaju.
             }
@@ -35,8 +43,8 @@ namespace Server
                     xmlWriter.WriteStartElement("Elements");        // Koreni element .xml datoteke.
 
                     xmlWriter.WriteStartElement("Element");         // Dodavanje specificiranog elementa.
-                    xmlWriter.WriteElementString("ID", id);
-                    xmlWriter.WriteElementString("Name", name);
+                    xmlWriter.WriteElementString("ID", idString);
+                    xmlWriter.WriteElementString("Name", nameString);
                     xmlWriter.WriteEndElement();
 
                     xmlWriter.WriteEndElement();

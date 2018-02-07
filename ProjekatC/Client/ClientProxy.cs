@@ -16,8 +16,9 @@ namespace Client
             factory = this.CreateChannel();
         }
 
-        public void Write(string id, string name)
+        public void Write(byte[] id, byte[] name)
         {
+           
             factory.Write(id, name);
         }
 

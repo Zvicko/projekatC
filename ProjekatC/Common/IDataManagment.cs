@@ -11,7 +11,7 @@ namespace Common
     public interface IDataManagment
     {
         [OperationContract]
-        void Write(string id, string name);
+        void Write(byte[] id, byte[] name);
 
         [OperationContract]
         Dictionary<byte[],byte[]> Read();
