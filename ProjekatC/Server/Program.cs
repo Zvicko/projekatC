@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using CertificateController;
 using Common;
 
 namespace Server
@@ -17,6 +18,8 @@ namespace Server
 
             ServiceHost host = new ServiceHost(typeof(DataManagment));
             host.AddServiceEndpoint(typeof(IDataManagment), binding, address);
+
+            Logger logger = new Logger();
 
             try
             {

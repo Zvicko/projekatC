@@ -23,3 +23,5 @@ E:\Zadaci\projekatC\ProjekatC\Server\bin\Debug\Server.pdb
 E:\Zadaci\projekatC\ProjekatC\Server\bin\Debug\Common.dll
 E:\Zadaci\projekatC\ProjekatC\Server\bin\Debug\Common.pdb
 E:\Zadaci\projekatC\ProjekatC\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Server\bin\Debug\CertificateController.dll
+C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Server\bin\Debug\CertificateController.pdb

@@ -52,6 +52,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CertificateController\CertificateController.csproj">
+      <Project>{b35241d5-33cf-4993-ad3d-08372588086d}</Project>
+      <Name>CertificateController</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{4b528cf1-a132-45a6-aa0b-ededd1af1387}</Project>
       <Name>Common</Name>
