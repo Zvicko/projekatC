@@ -25,3 +25,6 @@ E:\Zadaci\projekatC\ProjekatC\Server\bin\Debug\Common.pdb
 E:\Zadaci\projekatC\ProjekatC\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Server\bin\Debug\CertificateController.dll
 C:\Users\Admin\Source\Repos\projekatC\ProjekatC\Server\bin\Debug\CertificateController.pdb
+C:\Users\CyborgZvicko\Documents\visual studio 2015\Projects\ProjekatC\Server\bin\Debug\Server.exe.config
+C:\Users\CyborgZvicko\Documents\visual studio 2015\Projects\ProjekatC\Server\obj\Debug\Server.exe
+C:\Users\CyborgZvicko\Documents\visual studio 2015\Projects\ProjekatC\Server\obj\Debug\Server.pdb

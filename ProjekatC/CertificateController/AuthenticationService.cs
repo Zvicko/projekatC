@@ -12,6 +12,12 @@ namespace CertificateController
         // Mapirani javni kljucevi i korisnicka imena validnih klijenata.
         private Dictionary<object, string> validClients;
 
+
+        public AuthenticationService()
+        {
+            validClients = new Dictionary<object, string>();
+        }
+
         /// <summary>
         /// Vrsi autentifikaciju klijenta.
         /// </summary>
