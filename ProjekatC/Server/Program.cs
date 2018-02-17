@@ -19,6 +19,7 @@ namespace Server
             ServiceHost host = new ServiceHost(typeof(DataManagment));
             host.AddServiceEndpoint(typeof(IDataManagment), binding, address);
 
+            TicketGrantingService ticketGrantingService = new TicketGrantingService();
             Logger logger = new Logger();
 
             try

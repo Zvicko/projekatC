@@ -25,7 +25,7 @@ namespace CertificateController
         /// <param name="certificate"> Sertifikat koji je potrebno validirati. </param>
         public override void Validate(X509Certificate2 certificate)
         {
-            X509Certificate2 cert = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
+            X509Certificate2 cert = CertificateManager.GetCertificateFromStorage(StoreName.Root, StoreLocation.LocalMachine, "CertController");
 
             if (certificate.Issuer != cert.Issuer)
             {

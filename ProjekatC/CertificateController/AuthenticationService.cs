@@ -10,13 +10,9 @@ namespace CertificateController
     public class AuthenticationService
     {
         // Mapirani javni kljucevi i korisnicka imena validnih klijenata.
-        private Dictionary<object, string> validClients;
+        private Dictionary<string, string> validClients = new Dictionary<string, string>();
 
-
-        public AuthenticationService()
-        {
-            validClients = new Dictionary<object, string>();
-        }
+        public AuthenticationService() { }
 
         /// <summary>
         /// Vrsi autentifikaciju klijenta.
@@ -33,14 +29,14 @@ namespace CertificateController
 
             if (cv.CertificateValid == true)
             {
-                validClients.Add(certificate.PublicKey, username);
+                validClients.Add(certificate.PublicKey.Oid.Value, username);
                 authenticated = true;
             }
 
             return authenticated;
         }
 
-        public Dictionary<object, string> ValidClients
+        public Dictionary<string, string> ValidClients
         {
             get { return validClients; }
             set { validClients = value; }
