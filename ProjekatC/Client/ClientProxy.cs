@@ -18,7 +18,7 @@ namespace Client
         public ClientProxy(NetTcpBinding binding, string address) : base(binding, address)
         {
             string clientCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
-            X509Certificate2 clientCert = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, "Client");
+            X509Certificate2 clientCert = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, clientCertCN);
 
             this.Credentials.ClientCertificate.Certificate = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, clientCertCN);
 
